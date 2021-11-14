@@ -11,7 +11,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Confirm Update Student</title>
     </head>
-    <%Student std = (Student )session.getAttribute("student"); %>
+    <%Student std = (Student )getServletContext().getAttribute("student"); %>
     <body>
         <form name="confirmUpdate" action="ConfirmUpdateController">
             ID: <%=std.getId()%>

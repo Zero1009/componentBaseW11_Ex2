@@ -1,4 +1,4 @@
-/*
+ /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -34,9 +34,18 @@ public class RemoveStudentController extends HttpServlet {
             throws ServletException, IOException {
         int id = Integer.parseInt(request.getParameter("id"));
         HttpSession session = request.getSession();
+
+        
+        synchronized(getServletContext()){
+        if(UpdateStudentController.searchId(id)){
+             request.getRequestDispatcher("handleError.jsp").forward(request, response);  
+        }else{    
         Student std = studentTable.findStudentById(id);
-        session.setAttribute("student", std);
-        request.getRequestDispatcher("confirm_remove.jsp").forward(request, response);
+        getServletContext().setAttribute("student", std);
+        request.getRequestDispatcher("confirm_remove.jsp").forward(request, response);  
+            }
+        }
+        
 
     }
 

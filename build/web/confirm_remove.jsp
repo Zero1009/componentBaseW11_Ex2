@@ -14,7 +14,7 @@
     </head>
     <body>
        <%
-            Student std = (Student) session.getAttribute("student");
+            Student std = (Student) getServletContext().getAttribute("student");
             
         %>
         <form name="confirmRemove" action="ConfirmRemoveController">
